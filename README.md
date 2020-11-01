@@ -26,16 +26,16 @@ O(|α|) по времени и по памяти
 
 Для запуска тестов:
 
-> mkdir bin
-> cd bin
-> cmake -DDEBUG=1 ..
-> make
-> ./Test
+> mkdir bin <br/>
+> cd bin <br/>
+> cmake -DDEBUG=1 .. <br/>
+> make <br/>
+> ./Test <br/>
 
 Для запуска программы:
 
-> mkdir bin
-> cd bin
-> cmake ..
-> make
-> ./FirstPracticum
+> mkdir bin <br/>
+> cd bin <br/>
+> cmake .. <br/>
+> make <br/>
+> ./FirstPracticum <br/>
