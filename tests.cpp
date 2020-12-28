@@ -22,6 +22,7 @@ TEST(FROM_DOC, B_LETTER_3) {
     EXPECT_EQ(answer, false);
 }
 
+
 TEST(FIRST_FROM_DOC, A_LETTER_2) {
     std::string reg_exp = "ab+c.aba.*.bac.+.+*";
     Solver solver(reg_exp, 'b');
@@ -44,8 +45,8 @@ TEST(FIRST_FROM_DOC, C_LETTER_1) {
 }
 
 
-
 TEST(SECOND_FROM_DOC, B_LETTER_2) {
+    // a[(ba+ab)(cba)^*b+bca]^*
     std::string reg_exp = "acb..bab.c.*.ab.ba.+.+*a.";
     Solver solver(reg_exp, 'b');
     size_t answer = solver.AnswerToRequest(2);
@@ -53,13 +54,15 @@ TEST(SECOND_FROM_DOC, B_LETTER_2) {
 }
 
 TEST(SECOND_FROM_DOC, B_LETTER_3) {
+    // a[(ba+ab)(cba)^*b+bca]^*
     std::string reg_exp = "acb..bab.c.*.ab.ba.+.+*a.";
     Solver solver(reg_exp, 'b');
     size_t answer = solver.AnswerToRequest(3);
-    EXPECT_EQ(answer, false);
+    EXPECT_EQ(answer, true);
 }
 
 TEST(SECOND_FROM_DOC, A_LETTER_3) {
+    // a[(ba+ab)(cba)^*b+bca]^*
     std::string reg_exp = "acb..bab.c.*.ab.ba.+.+*a.a.";
     Solver solver(reg_exp, 'a');
     size_t answer = solver.AnswerToRequest(3);
@@ -67,6 +70,7 @@ TEST(SECOND_FROM_DOC, A_LETTER_3) {
 }
 
 TEST(SECOND_FROM_DOC, A_LETTER_4) {
+    // a[(ba+ab)(cba)^*b+bca]^*
     std::string reg_exp = "acb..bab.c.*.ab.ba.+.+*a.a.";
     Solver solver(reg_exp, 'a');
     size_t answer = solver.AnswerToRequest(4);
@@ -74,6 +78,7 @@ TEST(SECOND_FROM_DOC, A_LETTER_4) {
 }
 
 TEST(SECOND_FROM_DOC, C_LETTER_2) {
+    // a[(ba+ab)(cba)^*b+bca]^*
     std::string reg_exp = "acb..bcb.c.*.cb.ba.+.+*a.";
     Solver solver(reg_exp, 'c');
     size_t answer = solver.AnswerToRequest(2);
@@ -81,10 +86,47 @@ TEST(SECOND_FROM_DOC, C_LETTER_2) {
 }
 
 TEST(SECOND_FROM_DOC, C_LETTER_4) {
+    // a[(ba+ab)(cba)^*b+bca]^*
     std::string reg_exp = "acb..bcb.c.*.cb.ba.+.+*a.";
     Solver solver(reg_exp, 'c');
     size_t answer = solver.AnswerToRequest(4);
     EXPECT_EQ(answer, false);
+}
+
+
+TEST(CLINI_STAR, A_LETTER_1) {
+    std::string reg_exp = "b**";
+    Solver solver(reg_exp, 'a');
+    size_t answer = solver.AnswerToRequest(1);
+    EXPECT_EQ(answer, false);
+}
+
+TEST(CLINI_STAR, A_LETTER_2) {
+    std::string reg_exp = "ab*a..";
+    Solver solver(reg_exp, 'a');
+    size_t answer = solver.AnswerToRequest(2);
+    EXPECT_EQ(answer, true);
+}
+
+TEST(CLINI_STAR, A_LETTER_3) {
+    std::string reg_exp = "ab*a..c*a..";
+    Solver solver(reg_exp, 'a');
+    size_t answer = solver.AnswerToRequest(3);
+    EXPECT_EQ(answer, true);
+}
+
+TEST(CLINI_STAR, A_LETTER_4) {
+    std::string reg_exp = "ab*a..c*a..";
+    Solver solver(reg_exp, 'a');
+    size_t answer = solver.AnswerToRequest(4);
+    EXPECT_EQ(answer, false);
+}
+
+TEST(CLINI_STAR, A_LETTER_INF) {
+    std::string reg_exp = "ab*.*";
+    Solver solver(reg_exp, 'a');
+    size_t answer = solver.AnswerToRequest(1000000000);
+    EXPECT_EQ(answer, true);
 }
 
 
@@ -129,6 +171,7 @@ TEST(EXCEPTIONS, NO_OPERANDS) {
     Solver solver(reg_exp, 'a');
     ASSERT_ANY_THROW(solver.AnswerToRequest(1));
 }
+
 
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);

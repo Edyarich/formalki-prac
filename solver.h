@@ -16,18 +16,21 @@ private:
     size_t max_prefix_len_ = 0;
     size_t max_suffix_len_ = 0;
     size_t max_substr_len_ = 0;
-    bool has_diff_letters_ = true;
+    bool hasnt_diff_letters_ = true;
+    bool is_empty_ = false;
 
 public:
-    State(size_t num1, size_t num2, size_t num3, bool num4): max_prefix_len_(num1),
-                                                             max_suffix_len_(num2),
-                                                             max_substr_len_(num3),
-                                                             has_diff_letters_(num4) {}
+    State(size_t num1, size_t num2, size_t num3, bool num4, bool num5): max_prefix_len_(num1),
+                                                                         max_suffix_len_(num2),
+                                                                         max_substr_len_(num3),
+                                                                         hasnt_diff_letters_(num4),
+                                                                         is_empty_(num5) {}
 
     size_t GetMaxPrefixLen() const noexcept;
     size_t GetMaxSuffixLen() const noexcept;
     size_t GetMaxSubstrLen() const noexcept;
     bool GetStatus() const noexcept;
+    bool IsEmpty() const noexcept;
 };
 
 class Solver {
@@ -55,7 +58,7 @@ public:
     Solver(const Solver&&) = delete;
     Solver operator=(const Solver&) = delete;
     Solver operator=(const Solver&&) = delete;
-    explicit Solver(const std::string&, char);
+    explicit Solver(const std::string_view&, char);
 
     bool IsCorrectLetter(char) const noexcept;
 
