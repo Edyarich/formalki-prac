@@ -26,7 +26,6 @@ O(|α|) по времени и по памяти
 
 Для запуска тестов:
 
-> mkdir bin <br/>
 > cd bin <br/>
 > cmake -DDEBUG=1 .. <br/>
 > make <br/>
@@ -34,7 +33,6 @@ O(|α|) по времени и по памяти
 
 Для запуска программы:
 
-> mkdir bin <br/>
 > cd bin <br/>
 > cmake .. <br/>
 > make <br/>
